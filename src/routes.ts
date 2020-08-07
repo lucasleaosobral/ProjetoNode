@@ -11,8 +11,8 @@ router.post('/product', (request, response) => {
      return createProductController.handle(request, response);
 });
 
-router.get('*',function (req, res) {
-     res.redirect('/');
+router.get('*', (request, response) => {
+     response.redirect('/');
  });
  
 export { router };
