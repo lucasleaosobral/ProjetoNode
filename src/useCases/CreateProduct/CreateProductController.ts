@@ -1,4 +1,4 @@
-import { CreateProductUseCase } from "../useCases/CreateProduct/CreateProductUseCase";
+import { CreateProductUseCase } from "./CreateProductUseCase";
 import { Request, Response } from "express";
 
 export class CreateProductController {
