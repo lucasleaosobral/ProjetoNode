@@ -1,16 +1,16 @@
-import { IProductsReposity } from "../IProductsRepository";
+import { ProductReposity } from "../ProductRepository";
 import { Product } from "../../entities/Product";
 
-export class MysqlProductReposity implements IProductsReposity {
-    private products: Product[] = [];
+export class MysqlProductReposityImpl implements ProductReposity {
     
-    async findByName(name: string): Promise<Product> {
-        const product = this.products.find(product => product.name === name);
+    private products: Product[] = [];
 
+    async findByName(name: string): Promise<Product> {
+        const product = this.products.filter(p => p.name === name)[0];
         return product;
     }
-    async saveProduct(product: Product): Promise<void> {
+    async save(product: Product): Promise<Product> {
         this.products.push(product);
-        console.log(this.products);
+        return product;
     }
 }

@@ -1,19 +1,22 @@
 import { CreateProductUseCase } from "./CreateProductUseCase";
 import { Request, Response } from "express";
+import { inject, injectable } from "inversify";
 
 export class CreateProductController {
-    constructor(
-        private createProductUseCase: CreateProductUseCase,
-    ) {}
-    
+
+    createProductUseCase: CreateProductUseCase;
+
+    constructor(createProductUseCase: CreateProductUseCase) {
+        this.createProductUseCase = createProductUseCase;
+    }
+
     async handle(request: Request, response: Response): Promise<Response> {
-        const { name } = request.body;
-
         try {
-            await this.createProductUseCase.execute({ name });
-
-            return response.status(201).send();
-        }catch(error) {
+            const product = await this.createProductUseCase.execute(request.body);
+            return response
+                .status(201)
+                .send(product);
+        } catch (error) {
             return response.status(400).json({
                 message: error.message || "Internal Server Error"
             });

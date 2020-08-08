@@ -1,11 +1,11 @@
-import { MysqlProductReposity } from "../../repositories/implementations/MysqlProductRepository";
-import { CreateProductUseCase } from "./CreateProductUseCase";
+import { MysqlProductReposityImpl } from "../../repositories/implementations/MysqlProductRepository";
+import { CreateProductUseCaseImpl } from "./impl/CreateProductUseCaseImpl";
 import { CreateProductController } from "./CreateProductController";
 
-const mysqlProductReposity = new MysqlProductReposity();
+const mysqlProductReposity = new MysqlProductReposityImpl();
 
-const createProductUseCase = new CreateProductUseCase( mysqlProductReposity );
+const createProductUseCase = new CreateProductUseCaseImpl(mysqlProductReposity);
 
-const createProductController = new CreateProductController ( createProductUseCase );
+const createProductController = new CreateProductController( createProductUseCase );
 
-export {createProductController , createProductUseCase }
+export { createProductController , createProductUseCase }

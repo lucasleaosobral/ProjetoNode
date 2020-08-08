@@ -1,6 +1,6 @@
 import { Product } from "../entities/Product";
 
-export interface IProductsReposity {
+export interface ProductReposity {
     findByName(name: string): Promise<Product>;
-    saveProduct(product : Product): Promise<void>;
+    save(product : Product): Promise<Product>;
 }
