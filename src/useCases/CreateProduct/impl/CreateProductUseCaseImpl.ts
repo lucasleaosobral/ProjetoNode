@@ -9,13 +9,14 @@ export class CreateProductUseCaseImpl implements CreateProductUseCase {
     ) { }
 
     async execute(data: ProductDTO): Promise<ProductDTO> {
-
+        
+        let productDto = new ProductDTO();
+        
         const product = new Product();
-
-        const productDto = new ProductDTO();
-        productDto.id = product.id;
-        productDto.name = product.name;
-
+        product.name = data.name;
+        
+        productDto = await this.productsRepository.save(product);
+        
         return productDto;
     }
 }

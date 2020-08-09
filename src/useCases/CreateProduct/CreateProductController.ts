@@ -1,6 +1,5 @@
 import { CreateProductUseCase } from "./CreateProductUseCase";
 import { Request, Response } from "express";
-import { inject, injectable } from "inversify";
 
 export class CreateProductController {
 

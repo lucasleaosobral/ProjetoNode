@@ -1,6 +1,12 @@
-export class Product {
-    public readonly id: number;
-    public name: string;
+import {Entity, Column, PrimaryGeneratedColumn} from "typeorm";
 
-    constructor(){} 
+@Entity({name: 'produtos'})
+export class Product {
+    
+    @PrimaryGeneratedColumn()
+    id: number;
+    
+    @Column('text', {nullable: false})
+    name: string;
+
 }

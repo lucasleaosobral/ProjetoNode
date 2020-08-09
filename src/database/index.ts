@@ -1,7 +1,6 @@
-import { dbConfig } from '../config/database'
+import { createConnection } from 'typeorm';
 
-const Sequelize = require('sequelize');
-
-const connection = new Sequelize(dbConfig);
-
-export { connection };
+createConnection()
+        .then(async (connection) => {
+            console.log("connected to the database")
+        }).catch(error => console.log(error));

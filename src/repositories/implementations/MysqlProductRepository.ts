@@ -1,16 +1,19 @@
 import { ProductReposity } from "../ProductRepository";
 import { Product } from "../../entities/Product";
+import { getRepository } from 'typeorm';
 
 export class MysqlProductReposityImpl implements ProductReposity {
-    
-    private products: Product[] = [];
 
-    async findByName(name: string): Promise<Product> {
-        const product = this.products.filter(p => p.name === name)[0];
+    async findByName(ProductName: string): Promise<Product> {
+
+        const product = await getRepository(Product).findOne( { name: ProductName });
+        
         return product;
     }
     async save(product: Product): Promise<Product> {
-        this.products.push(product);
-        return product;
+        
+        const savedProduct = await getRepository(Product).save(product);
+
+        return savedProduct;
     }
 }
