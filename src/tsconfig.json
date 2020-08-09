@@ -1,18 +1,21 @@
 {
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "target": "es2017",
+    "esModuleInterop": true,
     "module": "commonjs",
     // "strict": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "allowJs": true,
-    "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "lib": [
       "dom",
       "es2015.promise",
-      "es5"
+      "es6"
     ]
   }, "include": [
-    "src/**/*.ts"
+    "./src/"
   ]
 }

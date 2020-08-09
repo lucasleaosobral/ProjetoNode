@@ -1,16 +1,19 @@
-import { IProductsReposity } from "../IProductsRepository";
+import { ProductReposity } from "../ProductRepository";
 import { Product } from "../../entities/Product";
+import { getRepository } from 'typeorm';
 
-export class MysqlProductReposity implements IProductsReposity {
-    private products: Product[] = [];
-    
-    async findByName(name: string): Promise<Product> {
-        const product = this.products.find(product => product.name === name);
+export class MysqlProductReposityImpl implements ProductReposity {
 
+    async findByName(ProductName: string): Promise<Product> {
+
+        const product = await getRepository(Product).findOne( { name: ProductName });
+        
         return product;
     }
-    async saveProduct(product: Product): Promise<void> {
-        this.products.push(product);
-        console.log(this.products);
+    async save(product: Product): Promise<Product> {
+        
+        const savedProduct = await getRepository(Product).save(product);
+
+        return savedProduct;
     }
 }
